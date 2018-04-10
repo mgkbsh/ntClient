@@ -1,36 +1,61 @@
-// server.js
+var config = require('./config/config.json');
+var NanoTwitter = require('./nanotwitter')
+var prompt = require('readline-sync');
 
-// BASE SETUP
-// =============================================================================
+const env = process.argv[2].trim();
 
-// call the packages we need
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
-var bodyParser = require('body-parser');
+if (env != 'local' && env != 'remote') {
+  console.log("FAIL: Choose either 'local' or 'remote' as arguments.");
+  return;
+}
 
-// configure app to use bodyParser()
-// this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const client = new NanoTwitter(env);
 
-var port = process.env.PORT || 3000;        // set our port
+while(true) {
+  var command = prompt.question('nt> ').trim();
 
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();              // get an instance of the express Router
+  if (!command) {
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', (req, res) => {
-    res.json({ message: 'hooray! welcome to the tweet service!' });
-});
+    console.log("Error: Enter a valid command.");
+    continue;
 
-// more routes for our API will happen here
+  }
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/', router);
+  if (command == 'exit'){
 
-// START THE SERVER
-// =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
+    break;
+
+  } else if (command == 'help') {
+
+    console.log('Commands: exit, help, login, tweet, timeline');
+
+  } else if (command == 'login') {
+
+    var username = prompt.question('username: ').trim();
+    var password = prompt.question('password: ').trim();
+
+    if (!username || !password) {
+      console.log("Error: Enter a valid username and password.");
+      continue;
+    }
+    client.login(username, password);
+
+  } else if (command == 'tweet') {
+
+    var content = prompt.question('content: ').trim();
+    client.tweet(content);
+
+  } else if (command == 'timeline') {
+
+    printTimeline(client.timeline());
+
+  } else {
+
+    console.log('Error: Enter a valid command.');
+
+  }
+}
+
+function printTimeline(tweets) {
+
+}

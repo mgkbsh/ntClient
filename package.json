@@ -1,7 +1,7 @@
 {
-  "name": "nttweetservice",
+  "name": "ntclient",
   "version": "1.0.0",
-  "description": "Tweet service of NanoTwitter",
+  "description": "Client of NanoTwitter",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,21 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mgkbsh/ntTweetService.git"
+    "url": "git+https://github.com/mgkbsh/ntClient.git"
   },
   "author": "Akiba Sato, Kevin Wang, Meg Kobashi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mgkbsh/ntTweetService/issues"
+    "url": "https://github.com/mgkbsh/ntClient/issues"
   },
   "engines": {
     "node": "9.1.0"
   },
-  "homepage": "https://github.com/mgkbsh/ntTweetService",
+  "homepage": "https://github.com/mgkbsh/ntClient",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
-    "express": "^4.16.3",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "readline-sync": "^1.4.9"
   }
 }

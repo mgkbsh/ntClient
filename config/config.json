@@ -1,0 +1,4 @@
+{
+  "local": "http://localhost:3000",
+  "remote": "http://nanotwitter-tjak.herokuapp.com"
+}
