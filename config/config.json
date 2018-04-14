@@ -1,4 +1,12 @@
 {
-  "local": "http://localhost:3000",
-  "remote": "http://nanotwitter-tjak.herokuapp.com"
+  "local": {
+    "main": "http://localhost:3000",
+    "tweet_service": "http://localhost:4567",
+    "user_service": "http://localhost:1234"
+  },
+  "remote": {
+    "main": "http://nanotwitter-tjak.herokuapp.com",
+    "tweet_service": "http://nttweets-tjak.herokuapp.com",
+    "user_service": "http://ntusers-tjak.herokuapp.com"
+  }
 }
